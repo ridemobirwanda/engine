@@ -53,3 +53,7 @@ coverage/
 .cache/
 dist.zip
 
+# Root index.html (only for local dev, not for deployment)
+# Cloudflare Pages should only deploy dist/ folder
+index.html
+
