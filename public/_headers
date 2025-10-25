@@ -15,6 +15,19 @@
   Cache-Control: public, max-age=3600, must-revalidate
   Content-Type: text/html; charset=utf-8
 
+# Don't cache polyfill files - they change frequently
+/react-polyfill.js
+  Cache-Control: no-cache, no-store, must-revalidate
+  Content-Type: application/javascript; charset=utf-8
+
+/react-override.js
+  Cache-Control: no-cache, no-store, must-revalidate
+  Content-Type: application/javascript; charset=utf-8
+
+/cloudflare-bypass.js
+  Cache-Control: no-cache, no-store, must-revalidate
+  Content-Type: application/javascript; charset=utf-8
+
 # Default headers for all files
 /*
   X-Content-Type-Options: nosniff
