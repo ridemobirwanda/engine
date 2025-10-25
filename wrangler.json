@@ -1,0 +1,22 @@
+{
+  "pages_build_configuration": {
+    "build": {
+      "command": "npm run build",
+      "cwd": "/",
+      "root_dir": "dist"
+    },
+    "dev": {
+      "command": "npm run dev",
+      "cwd": "/",
+      "ip": "0.0.0.0",
+      "port": 21201,
+      "local_protocol": "http"
+    }
+  },
+  "env": {
+    "production": {
+      "name": "engine-9dr"
+    }
+  }
+}
+
