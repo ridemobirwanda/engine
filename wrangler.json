@@ -1,2 +1,13 @@
-{}
+{
+  "build": {
+    "command": "npm run build",
+    "cwd": "/",
+    "root_dir": "dist"
+  },
+  "env": {
+    "production": {
+      "name": "engine-9dr"
+    }
+  }
+}
 
