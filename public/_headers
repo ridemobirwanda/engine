@@ -1,0 +1,26 @@
+# Cache static assets for 1 year
+/js/*
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: application/javascript; charset=utf-8
+
+/css/*
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: text/css; charset=utf-8
+
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache HTML for 1 hour
+/index.html
+  Cache-Control: public, max-age=3600, must-revalidate
+  Content-Type: text/html; charset=utf-8
+
+# Default headers for all files
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  Access-Control-Allow-Origin: *
+
