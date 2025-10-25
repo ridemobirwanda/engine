@@ -1,2 +1,2 @@
-# Redirects are handled by functions/[[path]].js instead
-
+# SPA routing - redirect all non-file requests to index.html
+/*  /index.html  200
