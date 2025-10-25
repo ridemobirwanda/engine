@@ -18,10 +18,10 @@ export async function onRequest(context) {
 
   // Check if the request is for a static file
   const isStaticFile = staticExtensions.some(ext => pathname.endsWith(ext));
-  
+
   // Check if the request is for a known special path
-  const isSpecialPath = 
-    pathname.startsWith('/api/') || 
+  const isSpecialPath =
+    pathname.startsWith('/api/') ||
     pathname.startsWith('/.well-known/') ||
     pathname === '/robots.txt' ||
     pathname === '/sitemap.xml' ||
@@ -38,8 +38,16 @@ export async function onRequest(context) {
   // For all other requests (SPA routes), rewrite to index.html
   // This allows React Router to handle client-side navigation
   const indexUrl = new URL('/index.html', request.url);
-  return context.next({
+  const response = await context.next({
     request: new Request(indexUrl, request)
   });
+
+  // Add cache-busting headers to ensure fresh content
+  const newResponse = new Response(response.body, response);
+  newResponse.headers.set('Cache-Control', 'no-cache, no-store, must-revalidate');
+  newResponse.headers.set('Pragma', 'no-cache');
+  newResponse.headers.set('Expires', '0');
+
+  return newResponse;
 }
 
