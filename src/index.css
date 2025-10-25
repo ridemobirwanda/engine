@@ -1,0 +1,550 @@
+/* Optimized font loading with display=swap for better performance */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap&text=EngineCore') layer(fonts);
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Critical CSS for above-the-fold content */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    font-display: swap;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Optimize images for 4K quality display */
+  img {
+    max-width: 100%;
+    height: auto;
+    loading: lazy;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: high-quality;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    /* Performance optimizations */
+    will-change: auto;
+    contain: layout style paint;
+  }
+  
+  /* High-quality image containers */
+  .image-container {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: high-quality;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  /* Product images specifically */
+  .product-image {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: high-quality;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: transform;
+    contain: layout style paint;
+    filter: brightness(1.1) contrast(1.1) saturate(1.1);
+    transition: filter 0.3s ease;
+  }
+
+  .product-image:hover {
+    filter: brightness(1.2) contrast(1.15) saturate(1.2);
+  }
+
+  /* 4-column product grid optimization */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .product-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .product-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .product-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  /* High-DPI display optimizations */
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .product-image {
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+      image-rendering: high-quality;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  }
+  
+  /* 4K display optimizations */
+  @media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 288dpi) {
+    .product-image {
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+      image-rendering: high-quality;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  }
+  
+  /* Ensure images maintain quality during transforms */
+  .product-image:hover {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: high-quality;
+  }
+  
+  /* Critical button styles for instant interaction */
+  button {
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+  
+  /* Optimize animations for performance */
+  * {
+    will-change: auto;
+  }
+  
+  .animate-spin {
+    will-change: transform;
+  }
+  
+  .hover-scale:hover {
+    will-change: transform;
+  }
+}
+
+@layer base {
+  :root {
+    /* Dark automotive theme matching the reference */
+    --background: 0 0% 8%;
+    --foreground: 0 0% 95%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 0 0% 95%;
+    --primary-foreground: 0 0% 8%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 210 40% 50%;
+    --accent-foreground: 0 0% 95%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 95%;
+    --border: 0 0% 18%;
+    --input: 0 0% 15%;
+    --ring: 0 0% 95%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 8%;
+    --foreground: 0 0% 95%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 0 0% 95%;
+    --primary-foreground: 0 0% 8%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 210 40% 50%;
+    --accent-foreground: 0 0% 95%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 95%;
+    --border: 0 0% 18%;
+    --input: 0 0% 15%;
+    --ring: 0 0% 95%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-['Inter'];
+    background-color: hsl(var(--background));
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .nav-item {
+    @apply text-white hover:text-gray-300 transition-colors duration-200 text-sm tracking-wide font-medium;
+  }
+  
+  .nav-arrow {
+    @apply inline-block ml-2 text-gray-400;
+  }
+
+  .search-container {
+    @apply max-w-2xl mx-auto relative;
+  }
+
+  .search-input {
+    @apply w-full px-6 py-4 bg-gray-800 border border-gray-700 text-white placeholder-gray-400 rounded-sm text-lg;
+  }
+
+  .menu-item {
+    @apply text-white hover:text-gray-300 transition-colors duration-200 text-lg font-medium tracking-wide;
+  }
+
+  /* Button utilities */
+  .btn-primary {
+    @apply bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold;
+  }
+
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
+  }
+
+  .tech-border {
+    @apply border border-accent/30;
+  }
+
+  .secondary-bright {
+    @apply bg-secondary/80;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 5px hsl(var(--accent));
+    }
+    to {
+      box-shadow: 0 0 20px hsl(var(--accent)), 0 0 30px hsl(var(--accent));
+    }
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent;
+  }
+
+  .hover-glow {
+    transition: all 0.3s ease;
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+  }
+
+  .hover-scale {
+    transition: transform 0.3s ease;
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.02);
+  }
+
+  /* Animated background for product stats */
+  @keyframes gradient-x {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes glow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(147, 51, 234, 0.8);
+    }
+  }
+
+  .animate-gradient-x {
+    background-size: 200% 200%;
+    animation: gradient-x 3s ease infinite;
+    will-change: background-position;
+    transform: translateZ(0);
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite;
+  }
+}
+
+/* Performance optimizations */
+* {
+  box-sizing: border-box;
+}
+
+/* Reduce layout thrashing */
+.layout-stable {
+  contain: layout;
+}
+
+/* Optimize animations */
+.animate-optimized {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* Critical above-the-fold styles */
+.hero-section {
+  position: relative;
+  height: 100vh;
+  min-height: 500px;
+  max-height: 800px;
+  overflow: hidden;
+  contain: layout style paint;
+  will-change: auto;
+}
+
+/* Hero video styles - Mobile optimized */
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  /* Mobile optimizations */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  /* Prevent video from causing layout shifts */
+  will-change: auto;
+  /* Mobile autoplay optimizations */
+  -webkit-playsinline: true;
+  -moz-playsinline: true;
+  -ms-playsinline: true;
+  playsinline: true;
+  /* Prevent fullscreen on mobile */
+  -webkit-media-controls: none;
+  -moz-media-controls: none;
+  -ms-media-controls: none;
+  media-controls: none;
+  /* Hardware acceleration */
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+/* Hero content styles */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  color: white;
+  padding: 2rem 1rem;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: bold;
+  margin-bottom: 1rem;
+  font-family: 'Orbitron', monospace;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.hero-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 768px) {
+  .hero-section {
+    height: 100vh;
+    min-height: 400px;
+    /* Optimize for mobile performance */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: auto;
+  }
+  
+  .hero-video {
+    /* Mobile video optimizations */
+    display: block;
+    /* Reduce quality for mobile to save bandwidth */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    /* Ensure video plays inline on mobile */
+    -webkit-playsinline: true;
+    -moz-playsinline: true;
+    -ms-playsinline: true;
+    playsinline: true;
+    /* Prevent fullscreen */
+    -webkit-media-controls: none;
+    -moz-media-controls: none;
+    -ms-media-controls: none;
+    media-controls: none;
+  }
+  
+  .hero-content {
+    padding: 1rem;
+    /* Ensure content is always visible on mobile */
+    z-index: 20;
+  }
+  
+  .hero-title {
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
+    /* Better mobile typography */
+    line-height: 1.2;
+  }
+  
+  .hero-subtitle {
+    font-size: clamp(0.9rem, 4vw, 1.2rem);
+    line-height: 1.4;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .hero-buttons a {
+    width: 100%;
+    max-width: 280px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+/* Very small screens - disable video completely */
+@media (max-width: 480px) {
+  .hero-video {
+    display: none !important;
+  }
+  
+  .hero-section {
+    min-height: 350px;
+  }
+  
+  .hero-content {
+    padding: 0.75rem;
+  }
+  
+  .hero-title {
+    font-size: clamp(1.25rem, 10vw, 2rem);
+    margin-bottom: 0.75rem;
+  }
+  
+  .hero-subtitle {
+    font-size: clamp(0.8rem, 5vw, 1rem);
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .hero-video {
+    display: none !important;
+  }
+  
+  .hero-section {
+    /* Optimize for touch devices */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero-section {
+    height: 80vh;
+    min-height: 600px;
+  }
+}
+
+/* Optimize scrolling */
+.scroll-optimized {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Reduce paint complexity */
+.glass-card {
+  contain: layout style paint;
+  will-change: auto;
+}
+
+/* Optimize text rendering */
+.text-optimized {
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

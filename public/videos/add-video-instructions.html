@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Background Instructions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 { color: #333; }
+        .step {
+            background: #e8f4f8;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 4px solid #2196F3;
+        }
+        .code {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 3px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 Video Background Setup Instructions</h1>
+        
+        <div class="step">
+            <h3>Step 1: Add Your Video File</h3>
+            <p>Place your video file in the <span class="highlight">public/videos/</span> directory and name it <span class="highlight">engine-background.mp4</span></p>
+            <div class="code">public/videos/engine-background.mp4</div>
+        </div>
+
+        <div class="step">
+            <h3>Step 2: Video Requirements</h3>
+            <ul>
+                <li><strong>Format:</strong> MP4 (H.264 codec recommended)</li>
+                <li><strong>Duration:</strong> 10-30 seconds (will loop automatically)</li>
+                <li><strong>Resolution:</strong> 1920x1080 or higher</li>
+                <li><strong>File Size:</strong> Keep under 10MB for best performance</li>
+                <li><strong>Content:</strong> Engine/automotive related footage works best</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h3>Step 3: Alternative Video Sources</h3>
+            <p>If you don't have a video file, you can use these free sources:</p>
+            <ul>
+                <li><a href="https://pixabay.com/videos/search/engine/" target="_blank">Pixabay - Engine Videos</a></li>
+                <li><a href="https://www.pexels.com/videos/" target="_blank">Pexels - Free Videos</a></li>
+                <li><a href="https://unsplash.com/videos" target="_blank">Unsplash - Free Videos</a></li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h3>Step 4: Test Your Video</h3>
+            <p>After adding your video file, visit:</p>
+            <div class="code">http://localhost:8081/</div>
+            <p>or</p>
+            <div class="code">http://localhost:8082/</div>
+        </div>
+
+        <div class="step">
+            <h3>Step 5: Fallback Animation</h3>
+            <p>If no video is found, the page will show a beautiful animated gradient background with floating particles instead.</p>
+        </div>
+
+        <div class="step">
+            <h3>🎯 Current Status</h3>
+            <p>The video background is now implemented and ready! Just add your video file to see it in action.</p>
+        </div>
+    </div>
+</body>
+</html>
+

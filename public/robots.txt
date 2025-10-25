@@ -1,0 +1,70 @@
+User-agent: *
+Allow: /
+
+# Allow main pages
+Allow: /products
+Allow: /engines
+Allow: /rebuilt-engines
+Allow: /used-engines
+Allow: /cylinders/
+Allow: /heads
+Allow: /timing-components
+Allow: /parts
+Allow: /technical-support
+Allow: /help-center
+Allow: /faqs
+Allow: /live-chat
+Allow: /returns-refunds
+Allow: /shipping
+Allow: /warranty
+Allow: /payment-methods
+Allow: /contact
+Allow: /about
+Allow: /cart
+Allow: /checkout
+Allow: /wishlist
+Allow: /login
+Allow: /payment-success
+Allow: /payment-cancelled
+
+# Disallow admin pages completely
+Disallow: /admin/
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /admin/login
+Disallow: /admin/login-test
+Disallow: /admin/auth-test
+Disallow: /admin/setup
+Disallow: /admin/test
+Disallow: /admin/direct
+Disallow: /admin/test-connection
+Disallow: /admin/products
+Disallow: /admin/categories
+Disallow: /admin/orders
+Disallow: /admin/customers
+Disallow: /admin/settings
+Disallow: /admin/content
+Disallow: /admin/payments
+Disallow: /admin/analytics
+Disallow: /admin/media
+Disallow: /admin/contact-messages
+
+# Disallow API endpoints
+Disallow: /api/
+Disallow: /_next/
+Disallow: /static/
+
+# Disallow private files
+Disallow: /*.json$
+Disallow: /supabase/
+Disallow: /migrations/
+Disallow: /scripts/
+
+# Allow sitemap.xml specifically
+Allow: /sitemap.xml
+
+# Sitemap location
+Sitemap: https://enginemarkets.com/sitemap.xml
+
+# Crawl delay (optional)
+Crawl-delay: 1

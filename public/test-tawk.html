@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tawk.to Test Page - EngineCore</title>
+    
+    <!-- CSP that allows Tawk.to -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; connect-src 'self' https: ws: wss:; frame-src 'self' https:; media-src 'self' https:; object-src 'none';">
+    
+    <!-- Preconnect to Tawk.to -->
+    <link rel="dns-prefetch" href="https://embed.tawk.to">
+    <link rel="preconnect" href="https://embed.tawk.to" crossorigin>
+    <link rel="dns-prefetch" href="https://va.tawk.to">
+    <link rel="preconnect" href="https://va.tawk.to" crossorigin>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+        
+        .status {
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+        
+        .status.loading {
+            background: #fff3cd;
+            color: #856404;
+            border: 2px solid #ffc107;
+        }
+        
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #28a745;
+        }
+        
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #dc3545;
+        }
+        
+        .info {
+            background: #e7f3ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #2196F3;
+        }
+        
+        .info h3 {
+            color: #1976D2;
+            margin-bottom: 10px;
+        }
+        
+        .info ul {
+            margin-left: 20px;
+        }
+        
+        .info li {
+            margin: 8px 0;
+            color: #555;
+        }
+        
+        .console-output {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+            margin: 20px 0;
+        }
+        
+        .console-output div {
+            margin: 5px 0;
+            padding: 2px 0;
+        }
+        
+        .console-output .success {
+            color: #4EC9B0;
+        }
+        
+        .console-output .error {
+            color: #f48771;
+        }
+        
+        .console-output .info {
+            color: #9CDCFE;
+            background: transparent;
+            padding: 2px 0;
+            margin: 0;
+            border: none;
+        }
+        
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 Tawk.to Test Page</h1>
+        
+        <div id="status" class="status loading">
+            ⏳ Initializing Tawk.to widget...
+        </div>
+        
+        <div class="info">
+            <h3>📋 What to check:</h3>
+            <ul>
+                <li>Chat widget appears in bottom-right corner</li>
+                <li>No errors in console output below</li>
+                <li>Widget is interactive and clickable</li>
+                <li>Chat window opens when clicked</li>
+            </ul>
+        </div>
+        
+        <div class="button-group">
+            <button onclick="testTawkAPI()">🔍 Test Tawk API</button>
+            <button onclick="openChat()">💬 Open Chat</button>
+            <button onclick="hideWidget()">👁️ Hide Widget</button>
+            <button onclick="showWidget()">👁️‍🗨️ Show Widget</button>
+            <button onclick="clearConsole()">🗑️ Clear Console</button>
+        </div>
+        
+        <h3 style="margin-top: 30px; color: #667eea;">📊 Console Output:</h3>
+        <div id="console" class="console-output">
+            <div class="info">Waiting for Tawk.to to load...</div>
+        </div>
+        
+        <div class="info" style="margin-top: 20px;">
+            <h3>🎯 Configuration:</h3>
+            <ul>
+                <li><strong>Property ID:</strong> 68d3e2e9a5528e1923b79293</li>
+                <li><strong>Widget ID:</strong> 1j5tqsot9</li>
+                <li><strong>Test Time:</strong> <span id="testTime"></span></li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Set test time
+        document.getElementById('testTime').textContent = new Date().toLocaleString();
+        
+        const consoleDiv = document.getElementById('console');
+        const statusDiv = document.getElementById('status');
+        
+        function addLog(message, type = 'info') {
+            const logEntry = document.createElement('div');
+            logEntry.className = type;
+            logEntry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            consoleDiv.appendChild(logEntry);
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        }
+        
+        function updateStatus(message, type) {
+            statusDiv.className = `status ${type}`;
+            statusDiv.textContent = message;
+        }
+        
+        function clearConsole() {
+            consoleDiv.innerHTML = '<div class="info">Console cleared</div>';
+        }
+        
+        function testTawkAPI() {
+            addLog('Testing Tawk API...', 'info');
+            
+            if (typeof window.Tawk_API !== 'undefined') {
+                addLog('✅ Tawk_API is defined', 'success');
+                addLog('Available methods: ' + Object.keys(window.Tawk_API).join(', '), 'info');
+                
+                if (window.Tawk_API.showWidget) {
+                    addLog('✅ showWidget method available', 'success');
+                }
+                if (window.Tawk_API.hideWidget) {
+                    addLog('✅ hideWidget method available', 'success');
+                }
+                if (window.Tawk_API.maximize) {
+                    addLog('✅ maximize method available', 'success');
+                }
+            } else {
+                addLog('❌ Tawk_API is not defined', 'error');
+            }
+        }
+        
+        function openChat() {
+            addLog('Attempting to open chat...', 'info');
+            if (window.Tawk_API?.maximize) {
+                window.Tawk_API.maximize();
+                addLog('✅ Chat opened', 'success');
+            } else {
+                addLog('❌ Cannot open chat - API not ready', 'error');
+            }
+        }
+        
+        function hideWidget() {
+            addLog('Hiding widget...', 'info');
+            if (window.Tawk_API?.hideWidget) {
+                window.Tawk_API.hideWidget();
+                addLog('✅ Widget hidden', 'success');
+            } else {
+                addLog('❌ Cannot hide widget - API not ready', 'error');
+            }
+        }
+        
+        function showWidget() {
+            addLog('Showing widget...', 'info');
+            if (window.Tawk_API?.showWidget) {
+                window.Tawk_API.showWidget();
+                addLog('✅ Widget shown', 'success');
+            } else {
+                addLog('❌ Cannot show widget - API not ready', 'error');
+            }
+        }
+        
+        // Override console methods to capture logs
+        const originalLog = console.log;
+        const originalError = console.error;
+        const originalWarn = console.warn;
+        
+        console.log = function(...args) {
+            addLog(args.join(' '), 'info');
+            originalLog.apply(console, args);
+        };
+        
+        console.error = function(...args) {
+            addLog(args.join(' '), 'error');
+            originalError.apply(console, args);
+        };
+        
+        console.warn = function(...args) {
+            addLog(args.join(' '), 'info');
+            originalWarn.apply(console, args);
+        };
+        
+        // Initialize Tawk.to
+        var Tawk_API = Tawk_API || {};
+        var Tawk_LoadStart = new Date();
+        
+        Tawk_API.onLoad = function() {
+            addLog('✅ Tawk.to widget loaded successfully!', 'success');
+            updateStatus('✅ Tawk.to widget loaded successfully!', 'success');
+            
+            // Auto-test API after load
+            setTimeout(testTawkAPI, 1000);
+        };
+        
+        Tawk_API.onChatStarted = function() {
+            addLog('💬 Chat conversation started', 'success');
+        };
+        
+        Tawk_API.onChatEnded = function() {
+            addLog('💬 Chat conversation ended', 'info');
+        };
+        
+        Tawk_API.onChatMaximized = function() {
+            addLog('💬 Chat window maximized', 'info');
+        };
+        
+        Tawk_API.onChatMinimized = function() {
+            addLog('💬 Chat window minimized', 'info');
+        };
+        
+        // Load Tawk.to script
+        (function() {
+            addLog('Loading Tawk.to script...', 'info');
+            updateStatus('⏳ Loading Tawk.to script...', 'loading');
+            
+            var s1 = document.createElement("script");
+            var s0 = document.getElementsByTagName("script")[0];
+            
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/68d3e2e9a5528e1923b79293/1j5tqsot9';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            
+            s1.onload = function() {
+                addLog('📦 Tawk.to script loaded', 'success');
+            };
+            
+            s1.onerror = function() {
+                addLog('❌ Failed to load Tawk.to script', 'error');
+                updateStatus('❌ Failed to load Tawk.to script', 'error');
+            };
+            
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+        
+        // Timeout check
+        setTimeout(function() {
+            if (typeof window.Tawk_API === 'undefined' || !window.Tawk_API.showWidget) {
+                addLog('⚠️ Tawk.to took longer than expected to load', 'error');
+                updateStatus('⚠️ Tawk.to loading timeout - check network', 'error');
+            }
+        }, 10000);
+    </script>
+</body>
+</html>
+
+
