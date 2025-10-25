@@ -34,8 +34,9 @@ export async function onRequest(context) {
     }
 
     // For all other routes, serve index.html (SPA routing)
+    // Use context.next() with pathname rewrite
     return context.next({
-      request: new Request(new URL('/index.html', request.url), request)
+      pathname: '/index.html'
     });
   } catch (error) {
     console.error('Router error:', error);
