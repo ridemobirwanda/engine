@@ -24,26 +24,8 @@
       }
     </script>
     
-    <!-- Only load polyfills in production for better dev performance -->
-    <script>
-      // Lightweight conditional loading
-      if (window.location.hostname !== 'localhost') {
-        const polyfill = document.createElement('script');
-        polyfill.src = '/react-polyfill.js';
-        polyfill.defer = true;
-        document.head.appendChild(polyfill);
-        
-        const override = document.createElement('script');
-        override.src = '/react-override.js';
-        override.defer = true;
-        document.head.appendChild(override);
-        
-        const bypass = document.createElement('script');
-        bypass.src = '/cloudflare-bypass.js';
-        bypass.defer = true;
-        document.head.appendChild(bypass);
-      }
-    </script>
+    <!-- Cloudflare bypass for Google Ads (must load before React) -->
+    <script src="/cloudflare-bypass.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
