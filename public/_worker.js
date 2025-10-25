@@ -33,11 +33,10 @@ export default {
     }
 
     // For all other routes, serve index.html (SPA routing)
-    const indexRequest = new Request(new URL('/index.html', request.url), {
-      method: 'GET',
-      headers: request.headers,
-    });
-
-    return env.ASSETS.fetch(indexRequest);
+    // Rewrite the request to /index.html
+    return env.ASSETS.fetch(new Request(
+      new URL('/index.html', request.url),
+      request
+    ));
   },
 };
